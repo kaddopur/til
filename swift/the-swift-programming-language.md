@@ -85,3 +85,55 @@ enum ASCII: Character {
 - String, Array, Dictionary 也是 Value Type!!!
 - assign 或是當做參數傳入 function 時，會假性 copy 一份 (Swift 會最佳化 copy 程序)
 
+## Properties
+
+- Stored properties vs Computed properties
+
+```swift
+struct Foo {
+    var storedProperty = 2.0
+    var computedProperty: Int {
+        get {
+            return Int(storedProperty * 10)
+        }
+        
+        set {
+            storedProperty = Double(newValue) / 10.0
+        }
+    }
+    
+    var shortComputedProperty: Int {
+        return Int(storedProperty * 10)
+    }
+}
+```
+
+- Property Observers
+```swift
+struct Bar {
+    var step = 0 {
+        willSet {
+            print("Step will be set to \(newValue)")
+        }
+        
+        didSet {
+            if step > 10 {
+                step = 10
+            }
+        }
+    }
+}
+```
+
+- `static` & `class` keyword for Type properties
+```swift
+class SomeClass {
+    static var storedTypeProperty = "Some value."
+    static var computedTypeProperty: Int {
+        return 27
+    }
+    class var overrideableComputedTypePorperty: Int {
+        return 107
+    }
+}
+```

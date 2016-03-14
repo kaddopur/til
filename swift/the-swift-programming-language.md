@@ -137,3 +137,24 @@ class SomeClass {
     }
 }
 ```
+
+## Subscripts
+可以對 class, struct 與 enumerion 定義 subscript，傳入的參數可以是任意 type，參數的個數也可以傳入多個，可以看做是一個方便用方括號取值的函式
+
+```swift
+struct TimesTable {
+    let multiplier: Int
+    subscript(key: String) -> String {
+        var output = ""
+        for _ in 0..<multiplier {
+            output += key
+        }
+        return output
+    }
+}
+
+let threeTimesTable = TimesTable(multiplier: 4)
+threeTimesTable["foo"]
+threeTimesTable["bar"]
+```
+ 
